@@ -32,3 +32,20 @@ def solution(numbers):
 
     return answer
 # %%
+# 석진님 코드
+# from itertools import permutations
+
+# def solution(numbers):
+#     prime_set = set()
+#     for i in range(len(numbers)):
+#         numbers_permutation = permutations(list(numbers), i  + 1)
+#         numbers_per_list = map(int, map("".join, numbers_permutation))
+#         prime_set |= set(numbers_per_list)
+
+#     prime_set -= set(range(0, 2))
+#     lim = int(max(prime_set) ** 0.5) + 1
+#     for i in range(2, lim):
+#         prime_set -= set(range(i * 2, max(prime_set) + 1, i))
+#     answer = len(prime_set)
+
+#     return answer
