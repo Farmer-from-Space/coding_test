@@ -13,7 +13,6 @@ for i in books:
 
     elif i not in best_seller and max_num == books.count(i):
         best_seller.append(i)
-        max_num = books.count(i)
 print(sorted(best_seller)[0])
 # %%
 
