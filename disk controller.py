@@ -59,3 +59,68 @@ def solution(jobs):
 # %%
 solution([[0, 3], [1, 9], [2, 6]])
 
+#%%
+
+import heapq
+def solution(jobs):
+    re_jobs=[]
+    heapq.heapify(jobs)
+
+    spend_time=[jobs[0][1]]
+    now = sum(heapq.heappop(jobs))
+
+    for i in jobs:
+        i.reverse()
+        re_jobs.append(i)
+     
+    while re_jobs:
+        possible = []
+        impossible = []
+        for _ in range(len(re_jobs)):
+            
+            if re_jobs[0][1] <= now:
+                possible.append(re_jobs.pop(0))
+            else:
+                impossible.append(re_jobs.pop(0))
+
+        if len(possible) == 0:
+            possible = impossible
+            impossible = []
+            
+        heapq.heapify(possible)
+        next = heapq.heappop(possible)
+
+        if now < next[1]:
+            now = sum(next)
+        else:
+            now = now + next[0]
+
+        spend_time.append(now - next[1])
+
+        re_jobs = re_jobs + possible + impossible
+    
+    answer = sum(spend_time)//len(spend_time)
+    return answer
+
+#%%
+# 퍼온코드 예술임..
+
+import heapq
+def solution(jobs):
+    answer, now, i = 0, 0, 0
+    start = -1
+    heap = []
+
+    while i < len(jobs):
+        for j in jobs:
+            if start < j[0] <= now:
+                heapq.heappush(heap, [j[1], j[0]])
+        if len(heap) > 0:
+            current = heapq.heappop(heap)
+            start = now
+            now += current[0]
+            answer += (now - current[1])
+            i += 1
+        else:
+            now += 1
+    return int(answer / len(jobs))
