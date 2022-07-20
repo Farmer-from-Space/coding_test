@@ -26,7 +26,7 @@ def solution(distance, rocks, n):
 #%%
 solution(25, [2, 14, 11, 21, 17], 2)
 # %%
-import heapq
+
 def solution(distance, rocks, n):
     rocks.append(0)
     rocks.append(distance)
@@ -37,20 +37,29 @@ def solution(distance, rocks, n):
         lens = []
         for j in range(len(rocks)):
             if j != 0:
-              heapq.heappush(lens, (rocks[j]-rocks[j-1], rocks[j]))
+              lens.append(rocks[j]-rocks[j-1])
         if n == 0:
             break
-        rocks.remove(heapq.heappop(lens)[1])
+        min_lens = lens.index(min(lens))
         
+        lens.pop(min_lens)
+        if min_lens+2 == len(rocks):
+            rocks.pop(min_lens)
+        elif min_lens == 0:
+            rocks.pop(min_lens+1)
+        elif lens[min_lens-1] >= lens[min_lens+1]:
+            rocks.pop(min_lens+1)            
+        elif lens[min_lens-1] < lens[min_lens+1]:
+            rocks.pop(min_lens)            
         n -= 1
         
         
     # 새로운 간격중 최소값
-    return heapq.heappop(lens)[0]
+    return min(lens)
 
 #%%
-solution(25, [2, 14, 11, 21, 17], 2)
-
+solution(34, [5, 19, 28], 2)
+# distance = 34 , rocks = [5, 19, 28], n= 2
 # %%
  [0, 2, 11, 14, 17, 21, 25]
-  2   9    3   3   4   4
+       9    3   3   4   4
