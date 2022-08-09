@@ -12,3 +12,14 @@ while word in docu:
         i += 1
 print(count)
 # %%
+
+docu = str(input())
+word = str(input())
+count, start = 0, 0
+while start <= len(docu)-len(word):
+    if docu[start:start+len(word)] == word:
+        count += 1
+        start += len(word)
+    else:
+        start += 1
+print(count)
