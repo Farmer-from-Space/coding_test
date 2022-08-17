@@ -41,3 +41,21 @@ for _ in range(n):
             print(i, tmp-i, sep=' ')
             break
 
+#%%
+# 퍼온코드+ 조합
+
+x = 10001
+nums = [False, False]+[True]*(x-1)
+
+for i in range(int(x**.5) + 1):
+    if nums[i]: 
+        nums[2*i::i] = [False]*(x//i - 1) 
+
+n = int(input())
+for _ in range(n):
+    tmp = int(input())
+    for i in range(tmp//2, 1, -1):
+        if nums[i] and nums[tmp-i]:
+            print(i, tmp-i, sep=' ')
+            break
+# %%
