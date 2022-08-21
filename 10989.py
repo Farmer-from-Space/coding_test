@@ -1,5 +1,4 @@
 #%%
-# 메모리 제한 걸리는데 왜인지 모름
 # import sys
 # input = sys.stdin.readline
 

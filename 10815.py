@@ -53,3 +53,22 @@ for i in range(len(card_comp)):
 # card_comp = input().split()
 # for i in range(M): #비교값이 주어질때 원래 가지고 있는 카드 리스트를 일일이 순회할필요 없음
 #     print(card_owned.get(int(card_comp[i]) + 10000000,'0') + " ")
+
+
+
+#위 코드를 참고해서 읽기 편하게 고쳐봄
+#%%
+
+n = int(input())
+ns = list(map(int, input().split()))
+m = int(input())
+ms = list(map(int, input().split()))
+
+sanggeun_cards = {}
+for i in ns:
+    sanggeun_cards[i+10000000] = 1
+for j in ms:
+    print(sanggeun_cards.get(j+10000000, 0), end =' ')
+
+
+#%%
